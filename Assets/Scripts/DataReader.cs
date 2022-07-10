@@ -19,12 +19,12 @@ public class DataItem
         ImagePath = imagePath;
         FlagPath = flagPath;
         Info = info;
-        
+
         if (minItemValue > value)
-            minItemValue = value;   
+            minItemValue = value;
     }
 
-    public string Name { get; private set;}
+    public string Name { get; private set; }
     public float Value { get; private set; }
     public string ImagePath { get; private set; }
     public string FlagPath { get; private set; }
@@ -33,7 +33,7 @@ public class DataItem
     public override string ToString()
     {
         string result = "";
-            result = Name + ", " + Value + ", " + Info + ", " + ImagePath;
+        result = Name + ", " + Value + ", " + Info + ", " + ImagePath;
         return result;
     }
 }
@@ -42,11 +42,12 @@ public sealed class DataReader
 {
     public List<DataItem> Data { get; private set; }
 
-    private DataReader() {
+    private DataReader()
+    {
         Data = new List<DataItem>();
     }
 
-    public void ReadFile(string path,char separetor)
+    public void ReadFile(string path, char separetor)
     {
         if (string.IsNullOrWhiteSpace(path))
         {
@@ -57,12 +58,12 @@ public sealed class DataReader
         List<DataItem> data = new List<DataItem>();
         // Read a text file line by line.  
         string[] lines = File.ReadAllLines(path);
-        for(int i =1; i < lines.Length; i++)
+        for (int i = 1; i < lines.Length; i++)
         {
             string[] fields = lines[i].Split(separetor);
-           
+
             DataItem di = new(
-                fields[0], float.Parse(fields[1].Replace(",","").Replace("\"","")),fields[2],fields[3],fields[4]
+                fields[0], float.Parse(fields[1].Replace(",", "").Replace("\"", "")), fields[2], fields[3], fields[4]
                 );
             data.Add(di);
         }

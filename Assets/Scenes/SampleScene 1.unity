@@ -530,8 +530,8 @@ MonoBehaviour:
   transformsList: []
   offset: {x: 0, y: 1, z: -6}
   target: {fileID: 0}
-  translateSpeed: 10
-  rotationSpeed: 10
+  translateSpeed: 1
+  rotationSpeed: 1
 --- !u!1 &1083212591
 GameObject:
   m_ObjectHideFlags: 0

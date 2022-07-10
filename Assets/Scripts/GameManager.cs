@@ -13,19 +13,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         //assigning values
         pillarsManager = GetComponent<PillarsManager>();
         dataReader = DataReader.Instance;
-        string csvFilePath = @"D:\MasterStudium\Interactive Design\CSV Files\template1.txt";
+        string csvFilePath = @"C:\Users\walee\Downloads\Temp\template1.txt";
         dataReader.ReadFile(csvFilePath, '\t');
-        
+
 
         dataReader.Data.ForEach((el) =>
         {
             pillarsManager.AddPillar(el);
         });
-        
+
         List<Transform> pillarsTransformList = new();
 
         PillarsManager.pillarsList.ForEach(el =>
@@ -40,6 +40,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
