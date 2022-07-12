@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         //assigning values
         pillarsManager = GetComponent<PillarsManager>();
         dataReader = DataReader.Instance;
-        string csvFilePath = @"C:\Users\walee\Downloads\Temp\template1.txt";
+        string csvFilePath = @"C:\Users\walee\Downloads\image\template.txt";
         dataReader.ReadFile(csvFilePath, '\t');
 
 
