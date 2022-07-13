@@ -27,10 +27,10 @@ namespace RockVR.Video.Demo
                 {
                     VideoCaptureCtrl.instance.StopCapture();
                 }
-                /*if (GUI.Button(new Rect(180, Screen.height - 60, 150, 50), "Pause Capture"))
+                if (GUI.Button(new Rect(180, Screen.height - 60, 150, 50), "Pause Capture"))
                 {
                     VideoCaptureCtrl.instance.ToggleCapture();
-                }*/
+                }
             }
             else if (VideoCaptureCtrl.instance.status == VideoCaptureCtrl.StatusType.PAUSED)
             {
