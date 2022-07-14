@@ -13,6 +13,14 @@ public class CameraMove : MonoBehaviour
     [SerializeField] private float translateSpeed = 0.5f;
     [SerializeField] private float rotationSpeed = 0.5f;
 
+
+    public void ChangeCameraSpeed(float value)
+    {
+        translateSpeed = value;
+        rotationSpeed = value;
+    }
+
+
     private bool started = false;
     int targetIndex;  
     private bool paused;

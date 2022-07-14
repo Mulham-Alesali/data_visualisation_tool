@@ -17,12 +17,15 @@ public class PillarsManager : MonoBehaviour
 
     private Vector3 scaleChange, positionChange;
 
+    public void HidePrefab()
+    {
+        prefab.SetActive(false);
 
+    }
     // Start is called before the first frame update
     void Start()
     {
         scaleChange = new Vector3(0f, 0.20f, 0f);
-
     }
 
     public void AddPillar(DataItem pillarData = null)

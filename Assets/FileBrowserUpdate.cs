@@ -9,10 +9,15 @@ using UnityEditor;
 
 public class FileBrowserUpdate : MonoBehaviour
 {
+    
     [SerializeField]
-    private Text filePath;
+    private Text inputFilePath;
+    
     [SerializeField]
-    private Text folderPath;
+    private Text outputFolderPath;
+
+
+
 
 
     public void OpenFileBrowser()
@@ -25,25 +30,23 @@ public class FileBrowserUpdate : MonoBehaviour
         {
             //Load image from local path with UWR
             ViewFilePath(path);
-
         });
     }
     public void OpenFolderBrowser()
     {
         string directory = EditorUtility.OpenFolderPanel("Select Directory", "", "");
-        //Load image from local path with UWR
         ViewFolderPath(directory);
     }
 
 
     public void ViewFilePath(string path)
     {
-        filePath.text = path;
+        inputFilePath.text = path;
         //Debug.Log(path);
     }
     public void ViewFolderPath(string path)
     {
-        folderPath.text = path;
+        outputFolderPath.text = path;
         //Debug.Log(path);
     }
 
