@@ -12,22 +12,20 @@ public class DataItem
         minItemValue = float.MaxValue;
     }
 
-    public DataItem(string name, float value, string imagePath, string flagPath, string info)
+    public DataItem(string name, string value, string imagePath, string info)
     {
         Name = name;
         Value = value;
         ImagePath = imagePath;
-        FlagPath = flagPath;
         Info = info;
 
-        if (minItemValue > value)
-            minItemValue = value;
+        if (minItemValue > float.Parse(value))
+            minItemValue = float.Parse(value);
     }
 
     public string Name { get; private set; }
-    public float Value { get; private set; }
+    public string Value { get; private set; }
     public string ImagePath { get; private set; }
-    public string FlagPath { get; private set; }
     public string Info { get; private set; }
 
     public override string ToString()
@@ -63,7 +61,7 @@ public sealed class DataReader
             string[] fields = lines[i].Split(separetor);
 
             DataItem di = new(
-                fields[0], float.Parse(fields[1].Replace(",", "").Replace("\"", "")), fields[2], fields[3], fields[4]
+                fields[0], fields[1], fields[2], fields[3]
                 );
             data.Add(di);
         }

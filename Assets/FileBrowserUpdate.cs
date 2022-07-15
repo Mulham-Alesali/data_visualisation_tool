@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.IO;
-using UnityEditor;
 
 public class FileBrowserUpdate : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class FileBrowserUpdate : MonoBehaviour
     [SerializeField]
     private Text outputFolderPath;
 
-
+    public static string ReadedFilePath { get; set; }
 
 
 
@@ -28,26 +27,41 @@ public class FileBrowserUpdate : MonoBehaviour
 
         new FileBrowser().OpenFileBrowser(bp, path =>
         {
+            GameManager.OpenFilePath = path;
             //Load image from local path with UWR
             ViewFilePath(path);
         });
+
     }
     public void OpenFolderBrowser()
     {
-        string directory = EditorUtility.OpenFolderPanel("Select Directory", "", "");
+        var bp = new BrowserProperties();
+        bp.filter = "txt files (*.txt)|*.txt|All Files (*.*)|*.*";
+        bp.filterIndex = 0;
+        new FileBrowser().OpenFolderBrowser(bp, path =>
+        {
+        string directory = path;
         ViewFolderPath(directory);
+        });
     }
 
 
     public void ViewFilePath(string path)
     {
         inputFilePath.text = path;
+        ReadedFilePath = path;
         //Debug.Log(path);
     }
     public void ViewFolderPath(string path)
     {
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
         outputFolderPath.text = path;
-        //Debug.Log(path);
+        
+        RockVR.Video.PathConfig.SaveFolder = path + "\\";
+        Debug.Log(path);
     }
 
 

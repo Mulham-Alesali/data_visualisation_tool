@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class CameraMove : MonoBehaviour
     [SerializeField]
     private List<Transform> transformsList;
 
-    [SerializeField] private Vector3 offset = new(0,0.5f, -6);
+    [SerializeField] private Vector3 offset = new(0,0.5f, -7);
     [SerializeField] private Transform target;
     [SerializeField] private float translateSpeed = 0.5f;
     [SerializeField] private float rotationSpeed = 0.5f;
@@ -20,6 +21,20 @@ public class CameraMove : MonoBehaviour
         rotationSpeed = value;
     }
 
+
+    Vector3 startPosition;
+    Quaternion startRotation;
+    private void Start()
+    {
+        startPosition = gameObject.transform.position;
+        startRotation = gameObject.transform.rotation;
+    }
+
+    internal void Reset()
+    {
+        started = false;
+        gameObject.transform.SetPositionAndRotation(startPosition, startRotation);
+    }
 
     private bool started = false;
     int targetIndex;  
@@ -41,9 +56,13 @@ public class CameraMove : MonoBehaviour
         {
             paused = false;
             targetIndex++;
-            if(targetIndex > transformsList.Count)
+            if(targetIndex >= transformsList.Count)
             {
                 started = false;
+                GameObject.Find("GameManager").GetComponent<GameManager>().StartStory();
+                GameObject.Find("Start").GetComponent<DisableOrEnable>().SwitchActive();
+                GameObject.Find("Finish").GetComponent<DisableOrEnable>().SwitchActive();
+                return;
             }
             target = transformsList[targetIndex];
         }
@@ -58,7 +77,7 @@ public class CameraMove : MonoBehaviour
 
     private bool HandleTranslation()
     {
-        var targetPosition = target.TransformPoint(offset);
+        var targetPosition = target.TransformPoint(offset) - new Vector3(0,-0.5f,0);
         transform.position = Vector3.Lerp(transform.position, targetPosition, translateSpeed * Time.deltaTime);
         if(Vector3.Distance(targetPosition, transform.position) < 0.1)
         {

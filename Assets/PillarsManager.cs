@@ -8,7 +8,7 @@ public class PillarsManager : MonoBehaviour
     private GameObject prefab;
 
     [SerializeField]
-    private float distanceBetweenPillars = 4;
+    private float distanceBetweenPillars = 5;
 
     [SerializeField]
     private GameObject pillarsContainer;
@@ -43,9 +43,15 @@ public class PillarsManager : MonoBehaviour
         }
         
     }
-    // Update is called once per frame
-    void Update()
+    
+    public void Reset()
     {
-        
+        pillarsList.ForEach(el =>
+        {
+            Destroy(el);
+        });
+        pillarsList = new();
+        prefab.SetActive(true);
     }
+
 }

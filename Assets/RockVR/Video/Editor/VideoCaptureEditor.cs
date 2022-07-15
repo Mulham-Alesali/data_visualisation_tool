@@ -28,11 +28,11 @@ namespace RockVR.Video.Editor
                 if (videoCapture.customPath)
                 {
                     videoCapture.customPathFolder = EditorGUILayout.TextField("Custom Path Folder", videoCapture.customPathFolder);
-                    PathConfig.SaveFolder = videoCapture.customPathFolder + @"\";
+                   // PathConfig.SaveFolder += @"\";
                 }
                 else
                 {
-                    PathConfig.SaveFolder = "";
+                   // PathConfig.SaveFolder = "C:\\videos";
                 }
                 GUILayout.Label(PathConfig.SaveFolder);
             }

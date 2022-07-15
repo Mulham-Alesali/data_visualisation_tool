@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.IO;
 
 namespace RockVR.Video
 {
@@ -31,7 +32,12 @@ namespace RockVR.Video
                 if (saveFolder == "")
                 {
                     saveFolder = myDocumentsPath + "/RockVR/Video/";
+                    if (!Directory.Exists(PathConfig.SaveFolder))
+                    {
+                        Directory.CreateDirectory(PathConfig.SaveFolder);
+                    }
                 }
+
                 return saveFolder;
 #endif
             }

@@ -188,6 +188,9 @@ namespace RockVR.Video
             }
             status = StatusType.STOPPED;
         }
+
+
+
         /// <summary>
         /// Pause video capture process.
         /// </summary>
@@ -313,6 +316,13 @@ namespace RockVR.Video
         {
             return isCaptureAudio && !isOfflineRender;
         }
+
+        public override void Reset()
+        {
+            
+            Awake();
+        }
+
         /// <summary>
         /// Initial instance and init variable.
         /// </summary>

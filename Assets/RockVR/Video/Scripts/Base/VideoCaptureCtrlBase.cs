@@ -127,7 +127,10 @@ namespace RockVR.Video
                 StartCapture();
             }
         }
-
+        public virtual void Reset()
+        {
+            
+        }
         private void Update()
         {
             if (startOnAwake)

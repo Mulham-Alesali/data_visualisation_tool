@@ -34,7 +34,23 @@ namespace AnotherFileBrowser.Windows
             }
         }
 
-       
+        /// <summary>
+        /// FileDialog for selecting any folder 
+        /// </summary>
+        /// <param name="browserProperties">Special Properties of File Dialog</param>
+        /// <param name="folderpath">User picked path(s) (Callback)</param>
+        public void OpenFolderBrowser(BrowserProperties browserProperties, Action<string> folderpath)
+        {
+            var ofd = new VistaFolderBrowserDialog();
+            ofd.Description = browserProperties.title;
+            ofd.UseDescriptionForTitle = true;
+
+            if (ofd.ShowDialog(new WindowWrapper(GetActiveWindow())) == DialogResult.OK)
+            {
+                folderpath(ofd.SelectedPath);
+            }
+        }
+
     }
 
     public class BrowserProperties

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,10 +26,12 @@ public class PillarController : MonoBehaviour
         titleObject.GetComponent<Text>().text = Data.Name.Trim();
         valueObject.GetComponent<Text>().text = Data.Value + "";
         textObject.GetComponent<Text>().text = Data.Info.Trim();
-        ImageUpdater.UpdateTexture(Data.ImagePath, imageObject.GetComponent<RawImage>());
+        string imagePath = Path.GetDirectoryName(FileBrowserUpdate.ReadedFilePath);
+        Debug.Log(imagePath + Data.ImagePath);
+        ImageUpdater.UpdateTexture(imagePath + "\\" + Data.ImagePath, imageObject.GetComponent<RawImage>());
         //Debug.Log(Data.Value +"/" +  DataItem.minItemValue);
 
-        Scale(Data.Value/DataItem.minItemValue);
+        Scale(float.Parse(Data.Value)/DataItem.minItemValue);
     }
 
     private void Scale(float factor)
