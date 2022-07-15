@@ -15,9 +15,6 @@ To run and use the program:
 Supported Platforms
     Windows 10 or 11
 
-Github repository:
-    https://github.com/Mulham-Alesali/data_visualisation_tool
-
 To open the project:
     Unity (2021.3.3f1)
     Visual Studio
